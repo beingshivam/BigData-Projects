@@ -1,0 +1,842 @@
+0: jdbc:hive2://localhost:10000> create table custtab01 (customerID int, gender string, age int, income int, spendingScore int)
+. . . . . . . . . . . . . . . .> ROW FORMAT delimited
+. . . . . . . . . . . . . . . .> fields terminated by ','
+. . . . . . . . . . . . . . . .> tblproperties("skip.header.line.count"="1");
+INFO  : Compiling command(queryId=dataflair_20210207230117_c689bd06-0238-4d92-b3b1-b8359be837f1): create table custtab01 (customerID int, gender string, age int, income int, spendingScore int)
+ROW FORMAT delimited
+fields terminated by ','
+tblproperties("skip.header.line.count"="1")
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207230117_c689bd06-0238-4d92-b3b1-b8359be837f1); Time taken: 0.21 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207230117_c689bd06-0238-4d92-b3b1-b8359be837f1): create table custtab01 (customerID int, gender string, age int, income int, spendingScore int)
+ROW FORMAT delimited
+fields terminated by ','
+tblproperties("skip.header.line.count"="1")
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=dataflair_20210207230117_c689bd06-0238-4d92-b3b1-b8359be837f1); Time taken: 0.144 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.45 seconds)
+0: jdbc:hive2://localhost:10000> load data local inpath '/home/dataflair/hive_practise/Customers-data.csv' overwrite into table custtab01;
+INFO  : Compiling command(queryId=dataflair_20210207230246_1ba6fcd4-a4a2-4130-8bd1-200f7436342d): load data local inpath '/home/dataflair/hive_practise/Customers-data.csv' overwrite into table custtab01
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207230246_1ba6fcd4-a4a2-4130-8bd1-200f7436342d); Time taken: 0.064 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207230246_1ba6fcd4-a4a2-4130-8bd1-200f7436342d): load data local inpath '/home/dataflair/hive_practise/Customers-data.csv' overwrite into table custtab01
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table default.custtab01 from file:/home/dataflair/hive_practise/Customers-data.csv
+INFO  : Starting task [Stage-1:STATS] in serial mode
+INFO  : Completed executing command(queryId=dataflair_20210207230246_1ba6fcd4-a4a2-4130-8bd1-200f7436342d); Time taken: 0.616 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.705 seconds)
+0: jdbc:hive2://localhost:10000> select count(*) from custtab01;
+INFO  : Compiling command(queryId=dataflair_20210207230303_e518d8da-eb17-43ed-a5d4-996757f15d61): select count(*) from custtab01
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:bigint, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207230303_e518d8da-eb17-43ed-a5d4-996757f15d61); Time taken: 0.25 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207230303_e518d8da-eb17-43ed-a5d4-996757f15d61): select count(*) from custtab01
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207230303_e518d8da-eb17-43ed-a5d4-996757f15d61
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0005
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0005/
+INFO  : Starting Job = job_1612697088457_0005, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0005/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0005
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:03:12,640 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:03:18,791 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.67 sec
+INFO  : 2021-02-07 23:03:22,896 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 2.97 sec
+INFO  : MapReduce Total cumulative CPU time: 2 seconds 970 msec
+INFO  : Ended Job = job_1612697088457_0005
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 2.97 sec   HDFS Read: 16742 HDFS Write: 103 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 2 seconds 970 msec
+INFO  : Completed executing command(queryId=dataflair_20210207230303_e518d8da-eb17-43ed-a5d4-996757f15d61); Time taken: 21.51 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++------+
+| _c0  |
++------+
+| 200  |
++------+
+1 row selected (21.8 seconds)
+0: jdbc:hive2://localhost:10000> select * from custtab01;
+INFO  : Compiling command(queryId=dataflair_20210207231617_f29749a0-20b6-43f5-8459-97a618d4d747): select * from custtab01
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:custtab01.customerid, type:int, comment:null), FieldSchema(name:custtab01.gender, type:string, comment:null), FieldSchema(name:custtab01.age, type:int, comment:null), FieldSchema(name:custtab01.income, type:int, comment:null), FieldSchema(name:custtab01.spendingscore, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207231617_f29749a0-20b6-43f5-8459-97a618d4d747); Time taken: 0.129 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207231617_f29749a0-20b6-43f5-8459-97a618d4d747): select * from custtab01
+INFO  : Completed executing command(queryId=dataflair_20210207231617_f29749a0-20b6-43f5-8459-97a618d4d747); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| custtab01.customerid  | custtab01.gender  | custtab01.age  | custtab01.income  | custtab01.spendingscore  |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| 1                     | Male              | 19             | 15                | 39                       |
+| 2                     | Male              | 21             | 15                | 81                       |
+| 3                     | Female            | 20             | 16                | 6                        |
+| 4                     | Female            | 23             | 16                | 77                       |
+| 5                     | Female            | 31             | 17                | 40                       |
+| 6                     | Female            | 22             | 17                | 76                       |
+| 7                     | Female            | 35             | 18                | 6                        |
+| 8                     | Female            | 23             | 18                | 94                       |
+| 9                     | Male              | 64             | 19                | 3                        |
+| 10                    | Female            | 30             | 19                | 72                       |
+| 11                    | Male              | 67             | 19                | 14                       |
+| 12                    | Female            | 35             | 19                | 99                       |
+| 13                    | Female            | 58             | 20                | 15                       |
+| 14                    | Female            | 24             | 20                | 77                       |
+| 15                    | Male              | 37             | 20                | 13                       |
+| 16                    | Male              | 22             | 20                | 79                       |
+| 17                    | Female            | 35             | 21                | 35                       |
+| 18                    | Male              | 20             | 21                | 66                       |
+| 19                    | Male              | 52             | 23                | 29                       |
+| 20                    | Female            | 35             | 23                | 98                       |
+| 21                    | Male              | 35             | 24                | 35                       |
+| 22                    | Male              | 25             | 24                | 73                       |
+| 23                    | Female            | 46             | 25                | 5                        |
+| 24                    | Male              | 31             | 25                | 73                       |
+| 25                    | Female            | 54             | 28                | 14                       |
+| 26                    | Male              | 29             | 28                | 82                       |
+| 27                    | Female            | 45             | 28                | 32                       |
+| 28                    | Male              | 35             | 28                | 61                       |
+| 29                    | Female            | 40             | 29                | 31                       |
+| 30                    | Female            | 23             | 29                | 87                       |
+| 31                    | Male              | 60             | 30                | 4                        |
+| 32                    | Female            | 21             | 30                | 73                       |
+| 33                    | Male              | 53             | 33                | 4                        |
+| 34                    | Male              | 18             | 33                | 92                       |
+| 35                    | Female            | 49             | 33                | 14                       |
+| 36                    | Female            | 21             | 33                | 81                       |
+| 37                    | Female            | 42             | 34                | 17                       |
+| 38                    | Female            | 30             | 34                | 73                       |
+| 39                    | Female            | 36             | 37                | 26                       |
+| 40                    | Female            | 20             | 37                | 75                       |
+| 41                    | Female            | 65             | 38                | 35                       |
+| 42                    | Male              | 24             | 38                | 92                       |
+| 43                    | Male              | 48             | 39                | 36                       |
+| 44                    | Female            | 31             | 39                | 61                       |
+| 45                    | Female            | 49             | 39                | 28                       |
+| 46                    | Female            | 24             | 39                | 65                       |
+| 47                    | Female            | 50             | 40                | 55                       |
+| 48                    | Female            | 27             | 40                | 47                       |
+| 49                    | Female            | 29             | 40                | 42                       |
+| 50                    | Female            | 31             | 40                | 42                       |
+| 51                    | Female            | 49             | 42                | 52                       |
+| 52                    | Male              | 33             | 42                | 60                       |
+| 53                    | Female            | 31             | 43                | 54                       |
+| 54                    | Male              | 59             | 43                | 60                       |
+| 55                    | Female            | 50             | 43                | 45                       |
+| 56                    | Male              | 47             | 43                | 41                       |
+| 57                    | Female            | 51             | 44                | 50                       |
+| 58                    | Male              | 69             | 44                | 46                       |
+| 59                    | Female            | 27             | 46                | 51                       |
+| 60                    | Male              | 53             | 46                | 46                       |
+| 61                    | Male              | 70             | 46                | 56                       |
+| 62                    | Male              | 19             | 46                | 55                       |
+| 63                    | Female            | 67             | 47                | 52                       |
+| 64                    | Female            | 54             | 47                | 59                       |
+| 65                    | Male              | 63             | 48                | 51                       |
+| 66                    | Male              | 18             | 48                | 59                       |
+| 67                    | Female            | 43             | 48                | 50                       |
+| 68                    | Female            | 68             | 48                | 48                       |
+| 69                    | Male              | 19             | 48                | 59                       |
+| 70                    | Female            | 32             | 48                | 47                       |
+| 71                    | Male              | 70             | 49                | 55                       |
+| 72                    | Female            | 47             | 49                | 42                       |
+| 73                    | Female            | 60             | 50                | 49                       |
+| 74                    | Female            | 60             | 50                | 56                       |
+| 75                    | Male              | 59             | 54                | 47                       |
+| 76                    | Male              | 26             | 54                | 54                       |
+| 77                    | Female            | 45             | 54                | 53                       |
+| 78                    | Male              | 40             | 54                | 48                       |
+| 79                    | Female            | 23             | 54                | 52                       |
+| 80                    | Female            | 49             | 54                | 42                       |
+| 81                    | Male              | 57             | 54                | 51                       |
+| 82                    | Male              | 38             | 54                | 55                       |
+| 83                    | Male              | 67             | 54                | 41                       |
+| 84                    | Female            | 46             | 54                | 44                       |
+| 85                    | Female            | 21             | 54                | 57                       |
+| 86                    | Male              | 48             | 54                | 46                       |
+| 87                    | Female            | 55             | 57                | 58                       |
+| 88                    | Female            | 22             | 57                | 55                       |
+| 89                    | Female            | 34             | 58                | 60                       |
+| 90                    | Female            | 50             | 58                | 46                       |
+| 91                    | Female            | 68             | 59                | 55                       |
+| 92                    | Male              | 18             | 59                | 41                       |
+| 93                    | Male              | 48             | 60                | 49                       |
+| 94                    | Female            | 40             | 60                | 40                       |
+| 95                    | Female            | 32             | 60                | 42                       |
+| 96                    | Male              | 24             | 60                | 52                       |
+| 97                    | Female            | 47             | 60                | 47                       |
+| 98                    | Female            | 27             | 60                | 50                       |
+| 99                    | Male              | 48             | 61                | 42                       |
+| 100                   | Male              | 20             | 61                | 49                       |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| custtab01.customerid  | custtab01.gender  | custtab01.age  | custtab01.income  | custtab01.spendingscore  |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| 101                   | Female            | 23             | 62                | 41                       |
+| 102                   | Female            | 49             | 62                | 48                       |
+| 103                   | Male              | 67             | 62                | 59                       |
+| 104                   | Male              | 26             | 62                | 55                       |
+| 105                   | Male              | 49             | 62                | 56                       |
+| 106                   | Female            | 21             | 62                | 42                       |
+| 107                   | Female            | 66             | 63                | 50                       |
+| 108                   | Male              | 54             | 63                | 46                       |
+| 109                   | Male              | 68             | 63                | 43                       |
+| 110                   | Male              | 66             | 63                | 48                       |
+| 111                   | Male              | 65             | 63                | 52                       |
+| 112                   | Female            | 19             | 63                | 54                       |
+| 113                   | Female            | 38             | 64                | 42                       |
+| 114                   | Male              | 19             | 64                | 46                       |
+| 115                   | Female            | 18             | 65                | 48                       |
+| 116                   | Female            | 19             | 65                | 50                       |
+| 117                   | Female            | 63             | 65                | 43                       |
+| 118                   | Female            | 49             | 65                | 59                       |
+| 119                   | Female            | 51             | 67                | 43                       |
+| 120                   | Female            | 50             | 67                | 57                       |
+| 121                   | Male              | 27             | 67                | 56                       |
+| 122                   | Female            | 38             | 67                | 40                       |
+| 123                   | Female            | 40             | 69                | 58                       |
+| 124                   | Male              | 39             | 69                | 91                       |
+| 125                   | Female            | 23             | 70                | 29                       |
+| 126                   | Female            | 31             | 70                | 77                       |
+| 127                   | Male              | 43             | 71                | 35                       |
+| 128                   | Male              | 40             | 71                | 95                       |
+| 129                   | Male              | 59             | 71                | 11                       |
+| 130                   | Male              | 38             | 71                | 75                       |
+| 131                   | Male              | 47             | 71                | 9                        |
+| 132                   | Male              | 39             | 71                | 75                       |
+| 133                   | Female            | 25             | 72                | 34                       |
+| 134                   | Female            | 31             | 72                | 71                       |
+| 135                   | Male              | 20             | 73                | 5                        |
+| 136                   | Female            | 29             | 73                | 88                       |
+| 137                   | Female            | 44             | 73                | 7                        |
+| 138                   | Male              | 32             | 73                | 73                       |
+| 139                   | Male              | 19             | 74                | 10                       |
+| 140                   | Female            | 35             | 74                | 72                       |
+| 141                   | Female            | 57             | 75                | 5                        |
+| 142                   | Male              | 32             | 75                | 93                       |
+| 143                   | Female            | 28             | 76                | 40                       |
+| 144                   | Female            | 32             | 76                | 87                       |
+| 145                   | Male              | 25             | 77                | 12                       |
+| 146                   | Male              | 28             | 77                | 97                       |
+| 147                   | Male              | 48             | 77                | 36                       |
+| 148                   | Female            | 32             | 77                | 74                       |
+| 149                   | Female            | 34             | 78                | 22                       |
+| 150                   | Male              | 34             | 78                | 90                       |
+| 151                   | Male              | 43             | 78                | 17                       |
+| 152                   | Male              | 39             | 78                | 88                       |
+| 153                   | Female            | 44             | 78                | 20                       |
+| 154                   | Female            | 38             | 78                | 76                       |
+| 155                   | Female            | 47             | 78                | 16                       |
+| 156                   | Female            | 27             | 78                | 89                       |
+| 157                   | Male              | 37             | 78                | 1                        |
+| 158                   | Female            | 30             | 78                | 78                       |
+| 159                   | Male              | 34             | 78                | 1                        |
+| 160                   | Female            | 30             | 78                | 73                       |
+| 161                   | Female            | 56             | 79                | 35                       |
+| 162                   | Female            | 29             | 79                | 83                       |
+| 163                   | Male              | 19             | 81                | 5                        |
+| 164                   | Female            | 31             | 81                | 93                       |
+| 165                   | Male              | 50             | 85                | 26                       |
+| 166                   | Female            | 36             | 85                | 75                       |
+| 167                   | Male              | 42             | 86                | 20                       |
+| 168                   | Female            | 33             | 86                | 95                       |
+| 169                   | Female            | 36             | 87                | 27                       |
+| 170                   | Male              | 32             | 87                | 63                       |
+| 171                   | Male              | 40             | 87                | 13                       |
+| 172                   | Male              | 28             | 87                | 75                       |
+| 173                   | Male              | 36             | 87                | 10                       |
+| 174                   | Male              | 36             | 87                | 92                       |
+| 175                   | Female            | 52             | 88                | 13                       |
+| 176                   | Female            | 30             | 88                | 86                       |
+| 177                   | Male              | 58             | 88                | 15                       |
+| 178                   | Male              | 27             | 88                | 69                       |
+| 179                   | Male              | 59             | 93                | 14                       |
+| 180                   | Male              | 35             | 93                | 90                       |
+| 181                   | Female            | 37             | 97                | 32                       |
+| 182                   | Female            | 32             | 97                | 86                       |
+| 183                   | Male              | 46             | 98                | 15                       |
+| 184                   | Female            | 29             | 98                | 88                       |
+| 185                   | Female            | 41             | 99                | 39                       |
+| 186                   | Male              | 30             | 99                | 97                       |
+| 187                   | Female            | 54             | 101               | 24                       |
+| 188                   | Male              | 28             | 101               | 68                       |
+| 189                   | Female            | 41             | 103               | 17                       |
+| 190                   | Female            | 36             | 103               | 85                       |
+| 191                   | Female            | 34             | 103               | 23                       |
+| 192                   | Female            | 32             | 103               | 69                       |
+| 193                   | Male              | 33             | 113               | 8                        |
+| 194                   | Female            | 38             | 113               | 91                       |
+| 195                   | Female            | 47             | 120               | 16                       |
+| 196                   | Female            | 35             | 120               | 79                       |
+| 197                   | Female            | 45             | 126               | 28                       |
+| 198                   | Male              | 32             | 126               | 74                       |
+| 199                   | Male              | 32             | 137               | 18                       |
+| 200                   | Male              | 30             | 137               | 83                       |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+200 rows selected (0.239 seconds)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> select * from custtab01 limit 10;
+INFO  : Compiling command(queryId=dataflair_20210207231651_a24759e6-6aff-4c4f-a546-e496fcfa2e0e): select * from custtab01 limit 10
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:custtab01.customerid, type:int, comment:null), FieldSchema(name:custtab01.gender, type:string, comment:null), FieldSchema(name:custtab01.age, type:int, comment:null), FieldSchema(name:custtab01.income, type:int, comment:null), FieldSchema(name:custtab01.spendingscore, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207231651_a24759e6-6aff-4c4f-a546-e496fcfa2e0e); Time taken: 0.115 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207231651_a24759e6-6aff-4c4f-a546-e496fcfa2e0e): select * from custtab01 limit 10
+INFO  : Completed executing command(queryId=dataflair_20210207231651_a24759e6-6aff-4c4f-a546-e496fcfa2e0e); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| custtab01.customerid  | custtab01.gender  | custtab01.age  | custtab01.income  | custtab01.spendingscore  |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| 1                     | Male              | 19             | 15                | 39                       |
+| 2                     | Male              | 21             | 15                | 81                       |
+| 3                     | Female            | 20             | 16                | 6                        |
+| 4                     | Female            | 23             | 16                | 77                       |
+| 5                     | Female            | 31             | 17                | 40                       |
+| 6                     | Female            | 22             | 17                | 76                       |
+| 7                     | Female            | 35             | 18                | 6                        |
+| 8                     | Female            | 23             | 18                | 94                       |
+| 9                     | Male              | 64             | 19                | 3                        |
+| 10                    | Female            | 30             | 19                | 72                       |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+10 rows selected (0.145 seconds)
+0: jdbc:hive2://localhost:10000> select * from custtab01 where age < 25 and gender = "Male";
+INFO  : Compiling command(queryId=dataflair_20210207231836_fcc5eea8-cd92-4372-8857-2104e9b13fa8): select * from custtab01 where age < 25 and gender = "Male"
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:custtab01.customerid, type:int, comment:null), FieldSchema(name:custtab01.gender, type:string, comment:null), FieldSchema(name:custtab01.age, type:int, comment:null), FieldSchema(name:custtab01.income, type:int, comment:null), FieldSchema(name:custtab01.spendingscore, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207231836_fcc5eea8-cd92-4372-8857-2104e9b13fa8); Time taken: 0.119 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207231836_fcc5eea8-cd92-4372-8857-2104e9b13fa8): select * from custtab01 where age < 25 and gender = "Male"
+INFO  : Completed executing command(queryId=dataflair_20210207231836_fcc5eea8-cd92-4372-8857-2104e9b13fa8); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| custtab01.customerid  | custtab01.gender  | custtab01.age  | custtab01.income  | custtab01.spendingscore  |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| 1                     | Male              | 19             | 15                | 39                       |
+| 2                     | Male              | 21             | 15                | 81                       |
+| 16                    | Male              | 22             | 20                | 79                       |
+| 18                    | Male              | 20             | 21                | 66                       |
+| 34                    | Male              | 18             | 33                | 92                       |
+| 42                    | Male              | 24             | 38                | 92                       |
+| 62                    | Male              | 19             | 46                | 55                       |
+| 66                    | Male              | 18             | 48                | 59                       |
+| 69                    | Male              | 19             | 48                | 59                       |
+| 92                    | Male              | 18             | 59                | 41                       |
+| 96                    | Male              | 24             | 60                | 52                       |
+| 100                   | Male              | 20             | 61                | 49                       |
+| 114                   | Male              | 19             | 64                | 46                       |
+| 135                   | Male              | 20             | 73                | 5                        |
+| 139                   | Male              | 19             | 74                | 10                       |
+| 163                   | Male              | 19             | 81                | 5                        |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+16 rows selected (0.157 seconds)
+0: jdbc:hive2://localhost:10000> select * from custtab01 where age < 25 and gender = "Male" order by income asc;
+INFO  : Compiling command(queryId=dataflair_20210207231905_8be61911-bff5-4a84-8d86-4791934f3747): select * from custtab01 where age < 25 and gender = "Male" order by income asc
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:custtab01.customerid, type:int, comment:null), FieldSchema(name:custtab01.gender, type:string, comment:null), FieldSchema(name:custtab01.age, type:int, comment:null), FieldSchema(name:custtab01.income, type:int, comment:null), FieldSchema(name:custtab01.spendingscore, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207231905_8be61911-bff5-4a84-8d86-4791934f3747); Time taken: 0.187 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207231905_8be61911-bff5-4a84-8d86-4791934f3747): select * from custtab01 where age < 25 and gender = "Male" order by income asc
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207231905_8be61911-bff5-4a84-8d86-4791934f3747
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0006
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0006/
+INFO  : Starting Job = job_1612697088457_0006, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0006/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0006
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:19:12,728 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:19:17,928 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.26 sec
+INFO  : 2021-02-07 23:19:23,037 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.78 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 780 msec
+INFO  : Ended Job = job_1612697088457_0006
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.78 sec   HDFS Read: 17489 HDFS Write: 552 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 3 seconds 780 msec
+INFO  : Completed executing command(queryId=dataflair_20210207231905_8be61911-bff5-4a84-8d86-4791934f3747); Time taken: 18.034 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| custtab01.customerid  | custtab01.gender  | custtab01.age  | custtab01.income  | custtab01.spendingscore  |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| 2                     | Male              | 21             | 15                | 81                       |
+| 1                     | Male              | 19             | 15                | 39                       |
+| 16                    | Male              | 22             | 20                | 79                       |
+| 18                    | Male              | 20             | 21                | 66                       |
+| 34                    | Male              | 18             | 33                | 92                       |
+| 42                    | Male              | 24             | 38                | 92                       |
+| 62                    | Male              | 19             | 46                | 55                       |
+| 66                    | Male              | 18             | 48                | 59                       |
+| 69                    | Male              | 19             | 48                | 59                       |
+| 92                    | Male              | 18             | 59                | 41                       |
+| 96                    | Male              | 24             | 60                | 52                       |
+| 100                   | Male              | 20             | 61                | 49                       |
+| 114                   | Male              | 19             | 64                | 46                       |
+| 135                   | Male              | 20             | 73                | 5                        |
+| 139                   | Male              | 19             | 74                | 10                       |
+| 163                   | Male              | 19             | 81                | 5                        |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+16 rows selected (18.256 seconds)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> select * from custtab01 where age < 25 and gender = "Male" order by income desc;
+INFO  : Compiling command(queryId=dataflair_20210207231950_1de9f9a4-2df7-465e-ac86-70316cdf6c0e): select * from custtab01 where age < 25 and gender = "Male" order by income desc
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:custtab01.customerid, type:int, comment:null), FieldSchema(name:custtab01.gender, type:string, comment:null), FieldSchema(name:custtab01.age, type:int, comment:null), FieldSchema(name:custtab01.income, type:int, comment:null), FieldSchema(name:custtab01.spendingscore, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207231950_1de9f9a4-2df7-465e-ac86-70316cdf6c0e); Time taken: 0.147 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207231950_1de9f9a4-2df7-465e-ac86-70316cdf6c0e): select * from custtab01 where age < 25 and gender = "Male" order by income desc
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207231950_1de9f9a4-2df7-465e-ac86-70316cdf6c0e
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0007
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0007/
+INFO  : Starting Job = job_1612697088457_0007, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0007/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0007
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:19:56,380 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:20:01,507 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.79 sec
+INFO  : 2021-02-07 23:20:05,615 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.18 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 180 msec
+INFO  : Ended Job = job_1612697088457_0007
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.18 sec   HDFS Read: 17481 HDFS Write: 552 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 3 seconds 180 msec
+INFO  : Completed executing command(queryId=dataflair_20210207231950_1de9f9a4-2df7-465e-ac86-70316cdf6c0e); Time taken: 15.754 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| custtab01.customerid  | custtab01.gender  | custtab01.age  | custtab01.income  | custtab01.spendingscore  |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| 163                   | Male              | 19             | 81                | 5                        |
+| 139                   | Male              | 19             | 74                | 10                       |
+| 135                   | Male              | 20             | 73                | 5                        |
+| 114                   | Male              | 19             | 64                | 46                       |
+| 100                   | Male              | 20             | 61                | 49                       |
+| 96                    | Male              | 24             | 60                | 52                       |
+| 92                    | Male              | 18             | 59                | 41                       |
+| 66                    | Male              | 18             | 48                | 59                       |
+| 69                    | Male              | 19             | 48                | 59                       |
+| 62                    | Male              | 19             | 46                | 55                       |
+| 42                    | Male              | 24             | 38                | 92                       |
+| 34                    | Male              | 18             | 33                | 92                       |
+| 18                    | Male              | 20             | 21                | 66                       |
+| 16                    | Male              | 22             | 20                | 79                       |
+| 2                     | Male              | 21             | 15                | 81                       |
+| 1                     | Male              | 19             | 15                | 39                       |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+16 rows selected (15.938 seconds)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> select * from custtab01 where gender = "Female" and age < 25 order by income desc;
+INFO  : Compiling command(queryId=dataflair_20210207232106_b4b315e1-98a6-453b-bae4-4859547f620a): select * from custtab01 where gender = "Female" and age < 25 order by income desc
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:custtab01.customerid, type:int, comment:null), FieldSchema(name:custtab01.gender, type:string, comment:null), FieldSchema(name:custtab01.age, type:int, comment:null), FieldSchema(name:custtab01.income, type:int, comment:null), FieldSchema(name:custtab01.spendingscore, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207232106_b4b315e1-98a6-453b-bae4-4859547f620a); Time taken: 0.096 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207232106_b4b315e1-98a6-453b-bae4-4859547f620a): select * from custtab01 where gender = "Female" and age < 25 order by income desc
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207232106_b4b315e1-98a6-453b-bae4-4859547f620a
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0008
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0008/
+INFO  : Starting Job = job_1612697088457_0008, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0008/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0008
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:21:12,713 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:21:16,802 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.32 sec
+INFO  : 2021-02-07 23:21:21,925 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 2.85 sec
+INFO  : MapReduce Total cumulative CPU time: 2 seconds 850 msec
+INFO  : Ended Job = job_1612697088457_0008
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 2.85 sec   HDFS Read: 17516 HDFS Write: 677 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 2 seconds 850 msec
+INFO  : Completed executing command(queryId=dataflair_20210207232106_b4b315e1-98a6-453b-bae4-4859547f620a); Time taken: 16.113 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| custtab01.customerid  | custtab01.gender  | custtab01.age  | custtab01.income  | custtab01.spendingscore  |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+| 125                   | Female            | 23             | 70                | 29                       |
+| 116                   | Female            | 19             | 65                | 50                       |
+| 115                   | Female            | 18             | 65                | 48                       |
+| 112                   | Female            | 19             | 63                | 54                       |
+| 106                   | Female            | 21             | 62                | 42                       |
+| 101                   | Female            | 23             | 62                | 41                       |
+| 88                    | Female            | 22             | 57                | 55                       |
+| 85                    | Female            | 21             | 54                | 57                       |
+| 79                    | Female            | 23             | 54                | 52                       |
+| 46                    | Female            | 24             | 39                | 65                       |
+| 40                    | Female            | 20             | 37                | 75                       |
+| 36                    | Female            | 21             | 33                | 81                       |
+| 32                    | Female            | 21             | 30                | 73                       |
+| 30                    | Female            | 23             | 29                | 87                       |
+| 14                    | Female            | 24             | 20                | 77                       |
+| 8                     | Female            | 23             | 18                | 94                       |
+| 6                     | Female            | 22             | 17                | 76                       |
+| 4                     | Female            | 23             | 16                | 77                       |
+| 3                     | Female            | 20             | 16                | 6                        |
++-----------------------+-------------------+----------------+-------------------+--------------------------+
+19 rows selected (16.245 seconds)
+0: jdbc:hive2://localhost:10000> select avg(spendingscore) from custtab01 where gender="Male" and age > 25 order by spendingscore desc;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10004]: Line 1:83 Invalid table alias or column reference 'spendingscore': (possible column names are: _c0) (state=42000,code=10004)
+0: jdbc:hive2://localhost:10000> select avg(spendingscore) from custtab01 where gender="Male" and age > 25 ;
+INFO  : Compiling command(queryId=dataflair_20210207232445_aaafd913-cb5a-49f7-a7db-01c5bc53b1d5): select avg(spendingscore) from custtab01 where gender="Male" and age > 25
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:double, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207232445_aaafd913-cb5a-49f7-a7db-01c5bc53b1d5); Time taken: 0.172 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207232445_aaafd913-cb5a-49f7-a7db-01c5bc53b1d5): select avg(spendingscore) from custtab01 where gender="Male" and age > 25
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207232445_aaafd913-cb5a-49f7-a7db-01c5bc53b1d5
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0009
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0009/
+INFO  : Starting Job = job_1612697088457_0009, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0009/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0009
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:24:51,486 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:24:56,624 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.05 sec
+INFO  : 2021-02-07 23:25:00,718 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.76 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 760 msec
+INFO  : Ended Job = job_1612697088457_0009
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.76 sec   HDFS Read: 21022 HDFS Write: 117 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 3 seconds 760 msec
+INFO  : Completed executing command(queryId=dataflair_20210207232445_aaafd913-cb5a-49f7-a7db-01c5bc53b1d5); Time taken: 16.744 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|        _c0         |
++--------------------+
+| 47.91428571428571  |
++--------------------+
+1 row selected (17.004 seconds)
+0: jdbc:hive2://localhost:10000> select avg(spendingscore) as AvgSpendingScore from custtab01 where gender="Male" and age > 25 ;
+INFO  : Compiling command(queryId=dataflair_20210207232553_49c110cc-25e0-48ea-acf0-aae425b00901): select avg(spendingscore) as AvgSpendingScore from custtab01 where gender="Male" and age > 25
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:avgspendingscore, type:double, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207232553_49c110cc-25e0-48ea-acf0-aae425b00901); Time taken: 0.16 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207232553_49c110cc-25e0-48ea-acf0-aae425b00901): select avg(spendingscore) as AvgSpendingScore from custtab01 where gender="Male" and age > 25
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207232553_49c110cc-25e0-48ea-acf0-aae425b00901
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0010
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0010/
+INFO  : Starting Job = job_1612697088457_0010, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0010/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0010
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:25:58,743 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:26:03,885 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.69 sec
+INFO  : 2021-02-07 23:26:09,005 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.8 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 800 msec
+INFO  : Ended Job = job_1612697088457_0010
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.8 sec   HDFS Read: 21035 HDFS Write: 117 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 3 seconds 800 msec
+INFO  : Completed executing command(queryId=dataflair_20210207232553_49c110cc-25e0-48ea-acf0-aae425b00901); Time taken: 16.773 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------+
+|  avgspendingscore  |
++--------------------+
+| 47.91428571428571  |
++--------------------+
+1 row selected (16.953 seconds)
+0: jdbc:hive2://localhost:10000> select avg(spendingscore) as AvgSSFemale from custtab01 where age > 25 and gender='Female';
+INFO  : Compiling command(queryId=dataflair_20210207233201_da9b07f1-4636-4b2f-b8d5-5f9cfbd2f947): select avg(spendingscore) as AvgSSFemale from custtab01 where age > 25 and gender='Female'
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:avgssfemale, type:double, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207233201_da9b07f1-4636-4b2f-b8d5-5f9cfbd2f947); Time taken: 0.091 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207233201_da9b07f1-4636-4b2f-b8d5-5f9cfbd2f947): select avg(spendingscore) as AvgSSFemale from custtab01 where age > 25 and gender='Female'
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207233201_da9b07f1-4636-4b2f-b8d5-5f9cfbd2f947
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0011
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0011/
+INFO  : Starting Job = job_1612697088457_0011, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0011/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0011
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:32:06,923 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:32:12,034 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.76 sec
+INFO  : 2021-02-07 23:32:17,182 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.88 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 880 msec
+INFO  : Ended Job = job_1612697088457_0011
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.88 sec   HDFS Read: 21028 HDFS Write: 117 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 3 seconds 880 msec
+INFO  : Completed executing command(queryId=dataflair_20210207233201_da9b07f1-4636-4b2f-b8d5-5f9cfbd2f947); Time taken: 16.921 seconds
++--------------------+
+|    avgssfemale     |
++--------------------+
+| 49.97826086956522  |
++--------------------+
+1 row selected (17.048 seconds)
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+0: jdbc:hive2://localhost:10000> select min(income) from custtab01 where age > 25;
+INFO  : Compiling command(queryId=dataflair_20210207233313_29b98104-bbde-4b32-885e-32fd0c4eaab3): select min(income) from custtab01 where age > 25
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207233313_29b98104-bbde-4b32-885e-32fd0c4eaab3); Time taken: 0.118 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207233313_29b98104-bbde-4b32-885e-32fd0c4eaab3): select min(income) from custtab01 where age > 25
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207233313_29b98104-bbde-4b32-885e-32fd0c4eaab3
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0012
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0012/
+INFO  : Starting Job = job_1612697088457_0012, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0012/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0012
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:33:18,959 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:33:24,063 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.82 sec
+INFO  : 2021-02-07 23:33:28,172 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.36 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 360 msec
+INFO  : Ended Job = job_1612697088457_0012
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.36 sec   HDFS Read: 18116 HDFS Write: 102 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 3 seconds 360 msec
+INFO  : Completed executing command(queryId=dataflair_20210207233313_29b98104-bbde-4b32-885e-32fd0c4eaab3); Time taken: 15.727 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++------+
+| _c0  |
++------+
+| 17   |
++------+
+1 row selected (15.878 seconds)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 where age < 25;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:7 Expression not in GROUP BY key 'customerid' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 where age < 25 group by spendingscore;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:7 Expression not in GROUP BY key 'customerid' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select max(spendingscore) from custtab01 where age < 25;
+INFO  : Compiling command(queryId=dataflair_20210207235009_f29ed903-e13e-4195-b402-bb57328ee33c): select max(spendingscore) from custtab01 where age < 25
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207235009_f29ed903-e13e-4195-b402-bb57328ee33c); Time taken: 0.144 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207235009_f29ed903-e13e-4195-b402-bb57328ee33c): select max(spendingscore) from custtab01 where age < 25
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207235009_f29ed903-e13e-4195-b402-bb57328ee33c
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0013
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0013/
+INFO  : Starting Job = job_1612697088457_0013, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0013/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0013
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:50:14,726 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:50:19,875 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.11 sec
+INFO  : 2021-02-07 23:50:24,971 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.59 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 590 msec
+INFO  : Ended Job = job_1612697088457_0013
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.59 sec   HDFS Read: 18117 HDFS Write: 102 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 3 seconds 590 msec
+INFO  : Completed executing command(queryId=dataflair_20210207235009_f29ed903-e13e-4195-b402-bb57328ee33c); Time taken: 16.825 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++------+
+| _c0  |
++------+
+| 94   |
++------+
+1 row selected (16.993 seconds)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 where age < 25 group by customerid;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:19 Expression not in GROUP BY key 'gender' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 where age < 25 groupby customerid;
+Error: Error while compiling statement: FAILED: ParseException line 1:88 missing EOF at 'groupby' near '25' (state=42000,code=40000)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 where age < 25 group by customerid;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:19 Expression not in GROUP BY key 'gender' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 group by customerid having age < 25;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:100 Expression not in GROUP BY key '25' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 group by spendingscore having age < 25;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:103 Expression not in GROUP BY key '25' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 as a group by spendingscore having age < 25;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:108 Expression not in GROUP BY key '25' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> select a.customerid, a.gender, a.age,a.income, max(a.spendingscore) from custtab01 as a group by a.spendingscore having age < 25;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:120 Expression not in GROUP BY key '25' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 where age < 25 group by spendingscore;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:7 Expression not in GROUP BY key 'customerid' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select customerid, gender, age,income, max(spendingscore) from custtab01 where age < 25 group by age;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Line 1:7 Expression not in GROUP BY key 'customerid' (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> select max(spendingscore) from custtab01 where age < 25;
+INFO  : Compiling command(queryId=dataflair_20210207235850_1426d267-09e3-4f29-9a81-23da98795c12): select max(spendingscore) from custtab01 where age < 25
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210207235850_1426d267-09e3-4f29-9a81-23da98795c12); Time taken: 0.117 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210207235850_1426d267-09e3-4f29-9a81-23da98795c12): select max(spendingscore) from custtab01 where age < 25
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210207235850_1426d267-09e3-4f29-9a81-23da98795c12
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1612697088457_0014
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1612697088457_0014/
+INFO  : Starting Job = job_1612697088457_0014, Tracking URL = http://dataflairvm:8088/proxy/application_1612697088457_0014/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1612697088457_0014
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-02-07 23:58:56,802 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-02-07 23:59:00,973 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.09 sec
+INFO  : 2021-02-07 23:59:07,101 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.65 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 650 msec
+INFO  : Ended Job = job_1612697088457_0014
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.65 sec   HDFS Read: 18107 HDFS Write: 102 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 3 seconds 650 msec
+INFO  : Completed executing command(queryId=dataflair_20210207235850_1426d267-09e3-4f29-9a81-23da98795c12); Time taken: 17.857 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++------+
+| _c0  |
++------+
+| 94   |
++------+
+1 row selected (17.996 seconds)
+0: jdbc:hive2://localhost:10000> with cte as (select *,max(spendingscore) from custtab01 where age < 25)
+. . . . . . . . . . . . . . . .> select * from cte;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10025]: Expression not in GROUP BY key customerid (state=42000,code=10025)
+0: jdbc:hive2://localhost:10000> 
