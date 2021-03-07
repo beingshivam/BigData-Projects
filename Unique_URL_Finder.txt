@@ -1,0 +1,503 @@
+0: jdbc:hive2://localhost:10000> create external table if not exists URLFinder_table_1 (Hit_Time TIMESTAMP,URLs STRING)
+. . . . . . . . . . . . . . . .> ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'      
+. . . . . . . . . . . . . . . .> STORED AS TEXTFILE;
+INFO  : Compiling command(queryId=dataflair_20210307212732_26d9dfae-f5e1-4e85-9052-5c1d84fbe0de): create external table if not exists URLFinder_table_1 (Hit_Time TIMESTAMP,URLs STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+STORED AS TEXTFILE
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307212732_26d9dfae-f5e1-4e85-9052-5c1d84fbe0de); Time taken: 0.022 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307212732_26d9dfae-f5e1-4e85-9052-5c1d84fbe0de): create external table if not exists URLFinder_table_1 (Hit_Time TIMESTAMP,URLs STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+STORED AS TEXTFILE
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=dataflair_20210307212732_26d9dfae-f5e1-4e85-9052-5c1d84fbe0de); Time taken: 0.048 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.077 seconds)
+0: jdbc:hive2://localhost:10000> load data local inpath '/home/dataflair/hive_practise/URL_file.csv' into table URLFinder_table_1;
+INFO  : Compiling command(queryId=dataflair_20210307212741_e9a0d5d3-8c69-42b7-af71-d70aee8cd3c0): load data local inpath '/home/dataflair/hive_practise/URL_file.csv' into table URLFinder_table_1
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307212741_e9a0d5d3-8c69-42b7-af71-d70aee8cd3c0); Time taken: 0.018 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307212741_e9a0d5d3-8c69-42b7-af71-d70aee8cd3c0): load data local inpath '/home/dataflair/hive_practise/URL_file.csv' into table URLFinder_table_1
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table default.urlfinder_table_1 from file:/home/dataflair/hive_practise/URL_file.csv
+INFO  : Starting task [Stage-1:STATS] in serial mode
+INFO  : Completed executing command(queryId=dataflair_20210307212741_e9a0d5d3-8c69-42b7-af71-d70aee8cd3c0); Time taken: 0.135 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.166 seconds)
+0: jdbc:hive2://localhost:10000> select * from URLFinder_table_1 limit 2;
+INFO  : Compiling command(queryId=dataflair_20210307212752_7327de91-be9c-472c-952f-f95da45b3793): select * from URLFinder_table_1 limit 2
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:urlfinder_table_1.hit_time, type:string, comment:null), FieldSchema(name:urlfinder_table_1.urls, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307212752_7327de91-be9c-472c-952f-f95da45b3793); Time taken: 0.085 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307212752_7327de91-be9c-472c-952f-f95da45b3793): select * from URLFinder_table_1 limit 2
+INFO  : Completed executing command(queryId=dataflair_20210307212752_7327de91-be9c-472c-952f-f95da45b3793); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-----------------------------+----------------------------------------------------+
+| urlfinder_table_1.hit_time  |               urlfinder_table_1.urls               |
++-----------------------------+----------------------------------------------------+
+| Hit_Time                    | URLs                                               |
+| 23-05-1909 03:17            | http://www.royaltyfreemusic.com/childrens-music.html |
++-----------------------------+----------------------------------------------------+
+2 rows selected (0.12 seconds)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> select count(1) from URLFinder_table_1;
+INFO  : Compiling command(queryId=dataflair_20210307212806_5a7182e1-6166-419f-b089-8164e260d4b7): select count(1) from URLFinder_table_1
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:bigint, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307212806_5a7182e1-6166-419f-b089-8164e260d4b7); Time taken: 0.108 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307212806_5a7182e1-6166-419f-b089-8164e260d4b7): select count(1) from URLFinder_table_1
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210307212806_5a7182e1-6166-419f-b089-8164e260d4b7
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1615127143776_0004
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1615127143776_0004/
+INFO  : Starting Job = job_1615127143776_0004, Tracking URL = http://dataflairvm:8088/proxy/application_1615127143776_0004/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1615127143776_0004
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-03-07 21:28:11,592 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-03-07 21:28:16,694 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.14 sec
+INFO  : 2021-03-07 21:28:20,796 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 2.38 sec
+INFO  : MapReduce Total cumulative CPU time: 2 seconds 380 msec
+INFO  : Ended Job = job_1615127143776_0004
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 2.38 sec   HDFS Read: 20732 HDFS Write: 103 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 2 seconds 380 msec
+INFO  : Completed executing command(queryId=dataflair_20210307212806_5a7182e1-6166-419f-b089-8164e260d4b7); Time taken: 16.17 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++------+
+| _c0  |
++------+
+| 124  |
++------+
+1 row selected (16.303 seconds)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> create external table if not exists URLFinder_table_hdfs (Hit_Time TIMESTAMP,URLs STRING)
+. . . . . . . . . . . . . . . .> ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'      
+. . . . . . . . . . . . . . . .> STORED AS TEXTFILE;
+INFO  : Compiling command(queryId=dataflair_20210307213012_9056b9e4-5a55-4b04-9904-6812d0853b11): create external table if not exists URLFinder_table_hdfs (Hit_Time TIMESTAMP,URLs STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+STORED AS TEXTFILE
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307213012_9056b9e4-5a55-4b04-9904-6812d0853b11); Time taken: 0.015 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307213012_9056b9e4-5a55-4b04-9904-6812d0853b11): create external table if not exists URLFinder_table_hdfs (Hit_Time TIMESTAMP,URLs STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+STORED AS TEXTFILE
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=dataflair_20210307213012_9056b9e4-5a55-4b04-9904-6812d0853b11); Time taken: 0.047 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.077 seconds)
+0: jdbc:hive2://localhost:10000> load data inpath '/user/hadoop/URL_Finder/URL_file.csv' into table URLFinder_table_hdfs;
+INFO  : Compiling command(queryId=dataflair_20210307213022_7d5ce9c7-703b-420f-8729-182907e09c55): load data inpath '/user/hadoop/URL_Finder/URL_file.csv' into table URLFinder_table_hdfs
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307213022_7d5ce9c7-703b-420f-8729-182907e09c55); Time taken: 0.02 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307213022_7d5ce9c7-703b-420f-8729-182907e09c55): load data inpath '/user/hadoop/URL_Finder/URL_file.csv' into table URLFinder_table_hdfs
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table default.urlfinder_table_hdfs from hdfs://localhost:9000/user/hadoop/URL_Finder/URL_file.csv
+INFO  : Starting task [Stage-1:STATS] in serial mode
+INFO  : Completed executing command(queryId=dataflair_20210307213022_7d5ce9c7-703b-420f-8729-182907e09c55); Time taken: 0.095 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
+No rows affected (0.123 seconds)
+0: jdbc:hive2://localhost:10000> select * from URLFinder_table_hdfs limit 124;
+INFO  : Compiling command(queryId=dataflair_20210307213037_b0cab13d-7fdb-469f-bbdc-d5b6d7e96e23): select * from URLFinder_table_hdfs limit 124
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:urlfinder_table_hdfs.hit_time, type:string, comment:null), FieldSchema(name:urlfinder_table_hdfs.urls, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307213037_b0cab13d-7fdb-469f-bbdc-d5b6d7e96e23); Time taken: 0.082 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307213037_b0cab13d-7fdb-469f-bbdc-d5b6d7e96e23): select * from URLFinder_table_hdfs limit 124
+INFO  : Completed executing command(queryId=dataflair_20210307213037_b0cab13d-7fdb-469f-bbdc-d5b6d7e96e23); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++--------------------------------+----------------------------------------------------+
+| urlfinder_table_hdfs.hit_time  |             urlfinder_table_hdfs.urls              |
++--------------------------------+----------------------------------------------------+
+| Hit_Time                       | URLs                                               |
+| 23-05-1909 03:17               | http://www.royaltyfreemusic.com/childrens-music.html |
+| 21-05-1911 00:08               | http://www.cnwgou.com/music/                       |
+| 17-05-1913 20:59               | http://www.vsc-trgovina.com/maticne-ploce/         |
+| 15-05-1915 17:50               | http://www.gis.net/~shepdog/BC_Museum/Permanent/BC_ColorHalfWhite.html |
+| 12-05-1917 14:41               | http://helpdesk.direct-ip.net/drivers/PC%20Drivers/SAR100/sar100manual.pdf |
+| 10-05-1919 11:32               | http://helpdesk.direct-ip.net/drivers/PC%20Drivers/SAR100/sar100manual.pdf |
+| 07-05-1921 08:23               | http://www.millionairetv.com/playonline.html       |
+| 05-05-1923 05:14               | http://www.pasadenaisd.org/redbluff/third.htm      |
+| 02-05-1925 02:05               | http://www.indolink.com/Kidz/ramapart1.html        |
+| 29-04-1927 22:56               | http://www.computefarm.com/                        |
+| 26-04-1929 19:47               | http://www.van-buuren.com/bedrijfsprofiel/inschrijving-kvk |
+| 26-04-1929 19:47               | http://weather.weatherbug.com/MD/Boonsboro-weather/weather-cams/local-cams.html |
+| 24-04-1931 16:38               | http://www.kingstonlinks.com/list/alphabetic/L/    |
+| 24-04-1931 16:38               | http://www.nmbar.org/Public/workshops.html         |
+| 21-04-1933 13:29               | http://www.oregonbrewcrew.com/pnw_comp.html        |
+| 21-04-1933 13:29               | http://www.waterhousegallery.com/Architectural.html |
+| 19-04-1935 10:20               | http://www.getapup.com/                            |
+| 19-04-1935 10:20               | http://www.regie-fonciere.net/                     |
+| 16-04-1937 07:11               | http://www.nevadacrs.com/                          |
+| 16-04-1937 07:11               | http://www.millionairetv.com/playonline.html       |
+| 14-04-1939 04:02               | http://pleatco.com/index-2D.html                   |
+| 14-04-1939 04:02               | http://www.westallisbowmen.com/Home_WAB.htm        |
+| 11-04-1941 00:53               | http://www.concordband.org/pr20050625.html         |
+| 11-04-1941 00:53               | http://www.historylink101.com/ancient_rome/ancient_rome_research.htm |
+| 08-04-1943 21:44               | http://www.roughstock.com/cowpie/songs/songindex.html |
+| 08-04-1943 21:44               | http://www.computefarm.com/                        |
+| 08-04-1943 21:44               | http://revver.com/video/409380/tug-war-spring-break-part-2/ |
+| 05-04-1945 18:35               | http://www.mapping-tools.com/routewriter/index.shtml |
+| 05-04-1945 18:35               | http://www.northcrest.com/ContactUs/GeneralContactInfo/tabid/150/Default.aspx |
+| 03-04-1947 15:26               | http://www.kingstonlinks.com/list/alphabetic/L/    |
+| 03-04-1947 15:26               | http://www.outdooradventurespirit.com/component/option,com_bookmarks/mode,0/catid,8/ |
+| 31-03-1949 12:17               | http://www.starkstate.edu/campusinfo/news/2million_DOLgrants.htm |
+| 31-03-1949 12:17               | http://www.waterhousegallery.com/Architectural.html |
+| 29-03-1951 09:08               | http://www.radwaste.org/hp.htm                     |
+| 29-03-1951 09:08               | http://www.regie-fonciere.net/                     |
+| 26-03-1953 05:59               | http://www.theverb.com/holga/mainfr.htm            |
+| 26-03-1953 05:59               | http://www.outdooradventurespirit.com/component/option,com_bookmarks/mode,0/catid,8/ |
+| 24-03-1955 02:50               | http://www.likesbooks.com/int12.html               |
+| 24-03-1955 02:50               | http://www.pasadenaisd.org/redbluff/third.htm      |
+| 20-03-1957 23:41               | http://www.northcrest.com/ContactUs/GeneralContactInfo/tabid/150/Default.aspx |
+| 20-03-1957 23:41               | http://www.indolink.com/Kidz/ramapart1.html        |
+| 18-03-1959 20:32               | http://www.teri.org/loan-center/loan-programs/elementary-secondary/elementary-secondary.asp |
+| 18-03-1959 20:32               | http://www.computefarm.com/                        |
+| 15-03-1961 17:23               | http://www.mobileair.com/critical-areas-dehumidification.php |
+| 15-03-1961 17:23               | http://weather.weatherbug.com/MD/Boonsboro-weather/weather-cams/local-cams.html |
+| 15-03-1961 17:23               | http://www.kingstonlinks.com/list/alphabetic/L/    |
+| 13-03-1963 14:14               | http://www.nmbar.org/Public/workshops.html         |
+| 10-03-1965 11:05               | http://www.oregonbrewcrew.com/pnw_comp.html        |
+| 08-03-1967 07:56               | http://www.district52.org//club-coaching.html      |
+| 05-03-1969 04:47               | http://www.millionairetv.com/playonline.html       |
+| 03-03-1971 01:38               | http://www.westallisbowmen.com/Home_WAB.htm        |
+| 27-02-1973 22:29               | http://www.historylink101.com/ancient_rome/ancient_rome_research.htm |
+| 25-02-1975 19:20               | http://www.stjohnswv.org/pages/pdfs/Interchange-03-23-07.pdf |
+| 22-02-1977 16:11               | http://www.patersonplacedayspa.com/component/option,com_contact/Itemid,3/ |
+| 20-02-1979 13:02               | http://www.le-prieure.com/notre%20site.html        |
+| 20-02-1979 13:02               | http://www.outdooradventurespirit.com/component/option,com_bookmarks/mode,0/catid,8/ |
+| 17-02-1981 09:53               | http://www.paslanmazkorkuluk.net/bize_ulasin.htm   |
+| 15-02-1983 06:44               | http://www.radwaste.org/hp.htm                     |
+| 12-02-1985 03:35               | http://www.tornedalsteatern.com/historia-2006.html |
+| 10-02-1987 00:26               | http://www.mothersgrille.com/contact.htm           |
+| 06-02-1989 21:17               | http://www.rpa.org/aboutrpa/ra.html                |
+| 04-02-1991 18:09               | http://www.iscle.com/ys4/html/03_06.html           |
+| 01-02-1993 15:00               | http://www.nuitdorient.com/n2444.htm               |
+| 30-01-1995 11:51               | http://www.victorianterrace.com/hostessletter.html |
+| 27-01-1997 08:42               | http://www.musiquesreligioses.ajgirona.org/cat/mapa.html |
+| 27-01-1997 08:42               | http://www.orchiddental.com/veneers.htm            |
+| 25-01-1999 05:33               | http://www.rkodigital.net/                         |
+| 22-01-2001 02:24               | http://www.waldronsphotography.com/seniors/all_seniors/schs-paul/index.htm |
+| 02-01-2002 07:31               | http://www.westallisbowmen.com/Home_WAB.htm        |
+| 10-03-2002 10:38               | http://www.westallisbowmen.com/Home_WAB.htm        |
+| 16-05-2002 13:44               | http://www.westallisbowmen.com/Home_WAB.htm        |
+| 22-07-2002 16:51               | http://www.waterhousegallery.com/Architectural.html |
+| 27-09-2002 19:57               | http://www.waterhousegallery.com/Architectural.html |
+| 03-12-2002 23:03               | http://www.waterhousegallery.com/Architectural.html |
+| 19-01-2003 23:15               | http://www.parenthub.com/family/savings/frugal.htm |
+| 09-02-2003 02:10               | http://www.waldronsphotography.com/seniors/all_seniors/schs-paul/index.htm |
+| 17-04-2003 05:16               | http://www.victorianterrace.com/hostessletter.html |
+| 23-06-2003 08:23               | http://www.tornedalsteatern.com/historia-2006.html |
+| 29-08-2003 11:29               | http://www.rpa.org/aboutrpa/ra.html                |
+| 04-11-2003 14:36               | http://www.rkodigital.net/                         |
+| 10-01-2004 17:42               | http://www.regie-fonciere.net/                     |
+| 17-03-2004 20:48               | http://www.regie-fonciere.net/                     |
+| 23-05-2004 23:55               | http://www.regie-fonciere.net/                     |
+| 30-07-2004 03:01               | http://www.radwaste.org/hp.htm                     |
+| 05-10-2004 06:08               | http://www.radwaste.org/hp.htm                     |
+| 11-12-2004 09:14               | http://www.pasadenaisd.org/redbluff/third.htm      |
+| 16-01-2005 20:06               | http://teachers.colonelby.com/rlalonde/            |
+| 16-01-2005 20:06               | http://www.historylink101.com/ancient_rome/ancient_rome_research.htm |
+| 16-02-2005 12:21               | http://www.pasadenaisd.org/redbluff/third.htm      |
+| 24-04-2005 15:27               | http://www.pasadenaisd.org/redbluff/third.htm      |
+| 30-06-2005 18:33               | http://www.pasadenaisd.org/jackson/administration/riojasc.htm |
+| 05-09-2005 21:40               | http://www.parenthub.com/family/savings/frugal.htm |
+| 12-11-2005 00:46               | http://www.outdooradventurespirit.com/component/option,com_bookmarks/mode,0/catid,8/ |
+| 18-01-2006 03:53               | http://www.outdooradventurespirit.com/component/option,com_bookmarks/mode,0/catid,8/ |
+| 26-03-2006 06:59               | http://www.outdooradventurespirit.com/component/option,com_bookmarks/mode,0/catid,8/ |
+| 01-06-2006 10:06               | http://www.westallisbowmen.com/Home_WAB.htm        |
+| 14-01-2007 16:57               | http://www.kingstonlinks.com/list/alphabetic/L/    |
+| 15-10-2007 00:06               | http://www.indolink.com/Kidz/ramapart1.html        |
+| 11-01-2009 13:48               | http://www.waterhousegallery.com/Architectural.html |
++--------------------------------+----------------------------------------------------+
+| urlfinder_table_hdfs.hit_time  |             urlfinder_table_hdfs.urls              |
++--------------------------------+----------------------------------------------------+
+| 26-02-2009 14:06               | http://www.pasadenaisd.org/redbluff/third.htm      |
+| 12-07-2010 04:06               | http://helpdesk.direct-ip.net/drivers/PC%20Drivers/SAR100/sar100manual.pdf |
+| 09-01-2011 10:39               | http://www.regie-fonciere.net/                     |
+| 24-11-2011 18:06               | http://www.nmbar.org/Public/workshops.html         |
+| 06-01-2013 07:30               | http://www.vivyland.com/no39card.html              |
+| 08-04-2013 08:06               | http://www.outdooradventurespirit.com/component/option,com_bookmarks/mode,0/catid,8/ |
+| 21-08-2014 22:06               | http://weather.weatherbug.com/MD/Boonsboro-weather/weather-cams/local-cams.html |
+| 04-01-2015 04:21               | http://www.centralsomersetpoolleague.com/wpress.htm |
+| 04-01-2015 04:21               | http://www.lechef.com/data/indu/615/061503202.html |
+| 04-01-2016 12:06               | http://www.chessbaron.co.uk/desktop_chess_computers.php |
+| 01-01-2017 01:12               | http://www.pasadenaisd.org/jackson/administration/riojasc.htm |
+| 19-05-2017 02:06               | http://www.rapidsriders.net/PastMeetings/Jan       |
+| 11-12-2032 00:00               | http://www.pasadenaisd.org/redbluff                |
+| 17-11-2050 19:39               | http://www.thewhippinpost.co.uk/music-career/whitby-studios-placement.htm |
+| 24-10-2068 15:18               | http://www.kingstonlinks.com/list/alphabetic/L/    |
+| 01-10-2086 10:57               | http://www.pds-test.co.uk/products/watchitv.html   |
+| 08-09-2104 06:36               | http://monsoonacton.foodler.com/MA/Acton/Indian/Monsoon-Indian-Bistro/Desserts/1272.html |
+| 08-09-2104 06:36               | http://www.weetjewel.com/inhoud/boven.htm          |
+| 16-08-2122 02:16               | http://www.upmystreet.com/buying-selling-property/properties-to-buy/l/nuneaton.html |
+| 22-07-2140 21:55               | http://www.peopleandcats.com/                      |
+| 29-06-2158 17:34               | http://www.indolink.com/Kidz/ramapart1.html        |
+| 05-06-2176 13:13               | http://www.parenttime.com/pregnancyarticles/howtogetpregnant.html |
+| 13-05-2194 08:52               | http://www.isleofmantravel.com/_specials/index.php |
+| 20-04-2212 04:31               | http://www.unihydro.com/html/specials.html         |
++--------------------------------+----------------------------------------------------+
+124 rows selected (0.109 seconds)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> select hit_time, urls from URLFinder_table_hdfs limit 2;
+INFO  : Compiling command(queryId=dataflair_20210307213503_04892e13-1856-46a2-af42-1049ba6b6062): select hit_time, urls from URLFinder_table_hdfs limit 2
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:hit_time, type:string, comment:null), FieldSchema(name:urls, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307213503_04892e13-1856-46a2-af42-1049ba6b6062); Time taken: 0.102 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307213503_04892e13-1856-46a2-af42-1049ba6b6062): select hit_time, urls from URLFinder_table_hdfs limit 2
+INFO  : Completed executing command(queryId=dataflair_20210307213503_04892e13-1856-46a2-af42-1049ba6b6062); Time taken: 0.0 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++-------------------+----------------------------------------------------+
+|     hit_time      |                        urls                        |
++-------------------+----------------------------------------------------+
+| Hit_Time          | URLs                                               |
+| 23-05-1909 03:17  | http://www.royaltyfreemusic.com/childrens-music.html |
++-------------------+----------------------------------------------------+
+2 rows selected (0.139 seconds)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> select urls, count(distinct hit_time) from URLFinder_table_hdfs 
+. . . . . . . . . . . . . . . .> group by url
+. . . . . . . . . . . . . . . .> having count(distinct hit_time) =1;
+Error: Error while compiling statement: FAILED: SemanticException [Error 10004]: Line 2:9 Invalid table alias or column reference 'url': (possible column names are: hit_time, urls) (state=42000,code=10004)
+0: jdbc:hive2://localhost:10000> select urls, count(distinct hit_time) from URLFinder_table_hdfs 
+. . . . . . . . . . . . . . . .> group by urls
+. . . . . . . . . . . . . . . .> having count(distinct hit_time) =1;
+INFO  : Compiling command(queryId=dataflair_20210307213704_e7dfeb1b-c94f-49db-ad98-46a52852c8db): select urls, count(distinct hit_time) from URLFinder_table_hdfs
+group by urls
+having count(distinct hit_time) =1
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:urls, type:string, comment:null), FieldSchema(name:_c1, type:bigint, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307213704_e7dfeb1b-c94f-49db-ad98-46a52852c8db); Time taken: 0.117 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307213704_e7dfeb1b-c94f-49db-ad98-46a52852c8db): select urls, count(distinct hit_time) from URLFinder_table_hdfs
+group by urls
+having count(distinct hit_time) =1
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210307213704_e7dfeb1b-c94f-49db-ad98-46a52852c8db
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks not specified. Estimated from input data size: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1615127143776_0005
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1615127143776_0005/
+INFO  : Starting Job = job_1615127143776_0005, Tracking URL = http://dataflairvm:8088/proxy/application_1615127143776_0005/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1615127143776_0005
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-03-07 21:37:10,536 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-03-07 21:37:14,707 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.34 sec
+INFO  : 2021-03-07 21:37:20,839 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.09 sec
+INFO  : MapReduce Total cumulative CPU time: 4 seconds 90 msec
+INFO  : Ended Job = job_1615127143776_0005
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.09 sec   HDFS Read: 17996 HDFS Write: 2887 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 4 seconds 90 msec
+INFO  : Completed executing command(queryId=dataflair_20210307213704_e7dfeb1b-c94f-49db-ad98-46a52852c8db); Time taken: 17.095 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++----------------------------------------------------+------+
+|                        urls                        | _c1  |
++----------------------------------------------------+------+
+| URLs                                               | 1    |
+| http://monsoonacton.foodler.com/MA/Acton/Indian/Monsoon-Indian-Bistro/Desserts/1272.html | 1    |
+| http://pleatco.com/index-2D.html                   | 1    |
+| http://revver.com/video/409380/tug-war-spring-break-part-2/ | 1    |
+| http://teachers.colonelby.com/rlalonde/            | 1    |
+| http://www.centralsomersetpoolleague.com/wpress.htm | 1    |
+| http://www.chessbaron.co.uk/desktop_chess_computers.php | 1    |
+| http://www.cnwgou.com/music/                       | 1    |
+| http://www.concordband.org/pr20050625.html         | 1    |
+| http://www.district52.org//club-coaching.html      | 1    |
+| http://www.getapup.com/                            | 1    |
+| http://www.gis.net/~shepdog/BC_Museum/Permanent/BC_ColorHalfWhite.html | 1    |
+| http://www.iscle.com/ys4/html/03_06.html           | 1    |
+| http://www.isleofmantravel.com/_specials/index.php | 1    |
+| http://www.le-prieure.com/notre%20site.html        | 1    |
+| http://www.lechef.com/data/indu/615/061503202.html | 1    |
+| http://www.likesbooks.com/int12.html               | 1    |
+| http://www.mapping-tools.com/routewriter/index.shtml | 1    |
+| http://www.mobileair.com/critical-areas-dehumidification.php | 1    |
+| http://www.mothersgrille.com/contact.htm           | 1    |
+| http://www.musiquesreligioses.ajgirona.org/cat/mapa.html | 1    |
+| http://www.nevadacrs.com/                          | 1    |
+| http://www.nuitdorient.com/n2444.htm               | 1    |
+| http://www.orchiddental.com/veneers.htm            | 1    |
+| http://www.parenttime.com/pregnancyarticles/howtogetpregnant.html | 1    |
+| http://www.pasadenaisd.org/redbluff                | 1    |
+| http://www.paslanmazkorkuluk.net/bize_ulasin.htm   | 1    |
+| http://www.patersonplacedayspa.com/component/option,com_contact/Itemid,3/ | 1    |
+| http://www.pds-test.co.uk/products/watchitv.html   | 1    |
+| http://www.peopleandcats.com/                      | 1    |
+| http://www.rapidsriders.net/PastMeetings/Jan       | 1    |
+| http://www.roughstock.com/cowpie/songs/songindex.html | 1    |
+| http://www.royaltyfreemusic.com/childrens-music.html | 1    |
+| http://www.starkstate.edu/campusinfo/news/2million_DOLgrants.htm | 1    |
+| http://www.stjohnswv.org/pages/pdfs/Interchange-03-23-07.pdf | 1    |
+| http://www.teri.org/loan-center/loan-programs/elementary-secondary/elementary-secondary.asp | 1    |
+| http://www.theverb.com/holga/mainfr.htm            | 1    |
+| http://www.thewhippinpost.co.uk/music-career/whitby-studios-placement.htm | 1    |
+| http://www.unihydro.com/html/specials.html         | 1    |
+| http://www.upmystreet.com/buying-selling-property/properties-to-buy/l/nuneaton.html | 1    |
+| http://www.van-buuren.com/bedrijfsprofiel/inschrijving-kvk | 1    |
+| http://www.vivyland.com/no39card.html              | 1    |
+| http://www.vsc-trgovina.com/maticne-ploce/         | 1    |
+| http://www.weetjewel.com/inhoud/boven.htm          | 1    |
++----------------------------------------------------+------+
+44 rows selected (17.258 seconds)
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> 
+0: jdbc:hive2://localhost:10000> SELECT c.URLs, c.Hit_Time
+. . . . . . . . . . . . . . . .> FROM (
+. . . . . . . . . . . . . . . .> SELECT a.URLs, a.Hit_Time, RANK() OVER (ORDER BY a.Hit_Time) ranking
+. . . . . . . . . . . . . . . .> FROM URLFinder_table_hdfs  a
+. . . . . . . . . . . . . . . .> JOIN
+. . . . . . . . . . . . . . . .> (
+. . . . . . . . . . . . . . . .> SELECT URLs, count(distinct Hit_Time)
+. . . . . . . . . . . . . . . .> FROM URLFinder_table_hdfs 
+. . . . . . . . . . . . . . . .> GROUP BY URLs
+. . . . . . . . . . . . . . . .> HAVING count(distinct Hit_Time) = 1) b
+. . . . . . . . . . . . . . . .> ON a.URLs = b.URLs) c
+. . . . . . . . . . . . . . . .> WHERE ranking = 1;
+INFO  : Compiling command(queryId=dataflair_20210307221958_c4f0294a-2807-4f01-82b6-c895f84f11ba): SELECT c.URLs, c.Hit_Time
+FROM (
+SELECT a.URLs, a.Hit_Time, RANK() OVER (ORDER BY a.Hit_Time) ranking
+FROM URLFinder_table_hdfs  a
+JOIN
+(
+SELECT URLs, count(distinct Hit_Time)
+FROM URLFinder_table_hdfs
+GROUP BY URLs
+HAVING count(distinct Hit_Time) = 1) b
+ON a.URLs = b.URLs) c
+WHERE ranking = 1
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:c.urls, type:string, comment:null), FieldSchema(name:c.hit_time, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=dataflair_20210307221958_c4f0294a-2807-4f01-82b6-c895f84f11ba); Time taken: 0.504 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=dataflair_20210307221958_c4f0294a-2807-4f01-82b6-c895f84f11ba): SELECT c.URLs, c.Hit_Time
+FROM (
+SELECT a.URLs, a.Hit_Time, RANK() OVER (ORDER BY a.Hit_Time) ranking
+FROM URLFinder_table_hdfs  a
+JOIN
+(
+SELECT URLs, count(distinct Hit_Time)
+FROM URLFinder_table_hdfs
+GROUP BY URLs
+HAVING count(distinct Hit_Time) = 1) b
+ON a.URLs = b.URLs) c
+WHERE ranking = 1
+WARN  : Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+INFO  : Query ID = dataflair_20210307221958_c4f0294a-2807-4f01-82b6-c895f84f11ba
+INFO  : Total jobs = 2
+INFO  : Launching Job 1 out of 2
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks not specified. Estimated from input data size: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1615127143776_0006
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1615127143776_0006/
+INFO  : Starting Job = job_1615127143776_0006, Tracking URL = http://dataflairvm:8088/proxy/application_1615127143776_0006/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1615127143776_0006
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+INFO  : 2021-03-07 22:20:05,746 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-03-07 22:20:11,918 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.71 sec
+INFO  : 2021-03-07 22:20:17,067 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 5.46 sec
+INFO  : MapReduce Total cumulative CPU time: 5 seconds 460 msec
+INFO  : Ended Job = job_1615127143776_0006
+INFO  : Starting task [Stage-6:MAPREDLOCAL] in serial mode
+INFO  : Execution completed successfully
+INFO  : MapredLocal task succeeded
+INFO  : Launching Job 2 out of 2
+INFO  : Starting task [Stage-3:MAPRED] in serial mode
+INFO  : Number of reduce tasks not specified. Estimated from input data size: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1615127143776_0007
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://dataflairvm:8088/proxy/application_1615127143776_0007/
+INFO  : Starting Job = job_1615127143776_0007, Tracking URL = http://dataflairvm:8088/proxy/application_1615127143776_0007/
+INFO  : Kill Command = /home/dataflair/hadoop/bin/mapred job  -kill job_1615127143776_0007
+INFO  : Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+INFO  : 2021-03-07 22:20:29,714 Stage-3 map = 0%,  reduce = 0%
+INFO  : 2021-03-07 22:20:34,904 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 1.27 sec
+INFO  : 2021-03-07 22:20:40,035 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 3.11 sec
+INFO  : MapReduce Total cumulative CPU time: 3 seconds 110 msec
+INFO  : Ended Job = job_1615127143776_0007
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 5.46 sec   HDFS Read: 17091 HDFS Write: 3028 SUCCESS
+INFO  : Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 3.11 sec   HDFS Read: 18428 HDFS Write: 153 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 8 seconds 570 msec
+INFO  : Completed executing command(queryId=dataflair_20210307221958_c4f0294a-2807-4f01-82b6-c895f84f11ba); Time taken: 42.567 seconds
+INFO  : OK
+INFO  : Concurrency mode is disabled, not creating a lock manager
++---------------------------------------+-------------------+
+|                c.urls                 |    c.hit_time     |
++---------------------------------------+-------------------+
+| http://www.nuitdorient.com/n2444.htm  | 01-02-1993 15:00  |
++---------------------------------------+-------------------+
+1 row selected (43.122 seconds)
+0: jdbc:hive2://localhost:10000> 
